@@ -1,0 +1,1 @@
+sh /data/api/int-shopguide/int-shopguide-api/target/build/bin/start.sh -httpPort=9000 > logs/catalina.log 2>&1 &
