@@ -64,6 +64,7 @@ public class SyncGoodsTask {
 
     public void execute(){
         //正确读取配置才开始做事
+        logger.info("sync goods to api host!");
         if(this.last_good_id>0){
             while(true){
                 PageDataVo<GoodsListWithHtml> vo = new PageDataVo<>();
