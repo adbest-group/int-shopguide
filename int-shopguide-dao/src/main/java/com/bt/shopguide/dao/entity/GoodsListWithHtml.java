@@ -513,4 +513,14 @@ public class GoodsListWithHtml implements Serializable{
     public void setThumbs(Integer thumbs) {
         this.thumbs = thumbs;
     }
+
+    private String nation;
+
+    public String getNation() {
+        return nation;
+    }
+
+    public void setNation(String nation) {
+        this.nation = nation;
+    }
 }
