@@ -81,14 +81,19 @@ public class GuangdiuJsonExecutor extends AbstractJsonExecutor {
             if(content.length()>160)
                 content = content.substring(0,160);
             glist.setShortContent(content);
-            glist.setMallName((obj.get("store")==null||obj.get("store").equals(JsonNull.INSTANCE))?"":obj.get("store").getAsString().trim().replace("\\\\t",""));
+            glist.setMallName((obj.get("store")==null||obj.get("store").equals(JsonNull.INSTANCE))?"":obj.get("store").getAsString().trim().replace("\\t",""));
             glist.setGoodSourceName((obj.get("source")==null||obj.get("source").equals(JsonNull.INSTANCE))?"":obj.get("source").getAsString().trim());
             String url = (obj.get("reallink")==null||obj.get("reallink").equals(JsonNull.INSTANCE))?"":obj.get("reallink").getAsString();
             glist.setCreateTime(new Date());
             //商品分类
             String cate = (obj.get("cate")==null || obj.get("cate").equals(JsonNull.INSTANCE))?"":obj.get("cate").getAsString();
+            String nation = (obj.get("nation")==null || obj.get("nation").equals(JsonNull.INSTANCE))?"":obj.get("nation").getAsString();
+
             if(StringUtils.isNotEmpty(cate)){
                 glist.setCategory(cate);
+            }
+            if(StringUtils.isNotEmpty(nation)){
+                glist.setNation(nation);
             }
             byte publish = 1;
             //? 这里需转链
