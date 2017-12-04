@@ -81,7 +81,7 @@ public class GuangdiuJsonExecutor extends AbstractJsonExecutor {
             if(content.length()>160)
                 content = content.substring(0,160);
             glist.setShortContent(content);
-            glist.setMallName((obj.get("store")==null||obj.get("store").equals(JsonNull.INSTANCE))?"":obj.get("store").getAsString().trim());
+            glist.setMallName((obj.get("store")==null||obj.get("store").equals(JsonNull.INSTANCE))?"":obj.get("store").getAsString().trim().replace("\\\\t",""));
             glist.setGoodSourceName((obj.get("source")==null||obj.get("source").equals(JsonNull.INSTANCE))?"":obj.get("source").getAsString().trim());
             String url = (obj.get("reallink")==null||obj.get("reallink").equals(JsonNull.INSTANCE))?"":obj.get("reallink").getAsString();
             glist.setCreateTime(new Date());
