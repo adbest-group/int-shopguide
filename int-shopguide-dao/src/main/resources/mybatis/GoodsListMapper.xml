@@ -22,6 +22,7 @@
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="thumbs" jdbcType="INTEGER" property="thumbs" />
     <result column="publish" jdbcType="TINYINT" property="publish" />
+    <result column="nation" jdbcType="VARCHAR" property="nation" />
     <result column="sync_time" jdbcType="TIMESTAMP" property="syncTime" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
@@ -35,11 +36,11 @@
       This element was generated on Tue Sep 26 09:43:22 CST 2017.
     -->
     id, title, small_image_url, price, original_price, discounts, coupons, promo_code, category,
-    mall_name, good_source_name, short_content, url, thumbs, publish, sync_time, create_time
+    mall_name, good_source_name, short_content, url, thumbs, publish,nation, sync_time, create_time
   </sql>
   <sql id="column_list_with_html">
     a.id, a.title, a.small_image_url, a.price, a.original_price, a.discounts, a.coupons, a.promo_code,a.category,
-    a.mall_name, a.good_source_name, a.short_content, a.url,a.thumbs, a.publish, a.sync_time, a.create_time,b.content_html
+    a.mall_name, a.good_source_name, a.short_content, a.url,a.thumbs, a.publish,a.nation, a.sync_time, a.create_time,b.content_html
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     <!--
@@ -71,13 +72,13 @@
       price, original_price, discounts, 
       coupons, promo_code, category,mall_name,
       good_source_name, short_content, url, thumbs,
-      publish, sync_time, create_time
+      publish,nation, sync_time, create_time
       )
     values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{smallImageUrl,jdbcType=VARCHAR}, 
       #{price,jdbcType=VARCHAR}, #{originalPrice,jdbcType=VARCHAR}, #{discounts,jdbcType=VARCHAR}, 
       #{coupons,jdbcType=VARCHAR}, #{promoCode,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{mallName,jdbcType=VARCHAR},
       #{goodSourceName,jdbcType=VARCHAR}, #{shortContent,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{thumbs,jdbcType=INTEGER},#{publish,jdbcType=TINYINT}, #{syncTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
+      #{thumbs,jdbcType=INTEGER},#{publish,jdbcType=TINYINT}, #{nation,jdbcType=VARCHAR}, #{syncTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.bt.shopguide.dao.entity.GoodsList" useGeneratedKeys="true" keyProperty="id">
@@ -133,6 +134,9 @@
       <if test="publish != null">
         publish,
       </if>
+      <if test="nation != null">
+        nation,
+      </if>
       <if test="syncTime != null">
         sync_time,
       </if>
@@ -185,6 +189,9 @@
       </if>
       <if test="publish != null">
         #{publish,jdbcType=TINYINT},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
       </if>
       <if test="syncTime != null">
         #{syncTime,jdbcType=TIMESTAMP},
@@ -244,6 +251,9 @@
       <if test="publish != null">
         publish = #{publish,jdbcType=TINYINT},
       </if>
+      <if test="nation != null">
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
       <if test="syncTime != null">
         sync_time = #{syncTime,jdbcType=TIMESTAMP},
       </if>
@@ -274,6 +284,7 @@
       url = #{url,jdbcType=VARCHAR},
       thumbs = #{thumbs,jdbcType=INTEGER},
       publish = #{publish,jdbcType=TINYINT},
+      nation = #{nation,jdbcType=VARCHAR},
       sync_time = #{syncTime,jdbcType=TIMESTAMP},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
@@ -289,6 +300,9 @@
     </if>
     <if test="category != null" >
       and category = #{category,jdbcType=VARCHAR}
+    </if>
+    <if test="nation != null" >
+      and nation = #{nation,jdbcType=VARCHAR}
     </if>
     <if test="keyword != null" >
       and (title like CONCAT('%',#{keyword,jdbcType=VARCHAR},'%') or short_content like CONCAT('%',#{keyword,jdbcType=VARCHAR},'%'))
@@ -314,6 +328,9 @@
     </if>
     <if test="category != null" >
       and category = #{category,jdbcType=VARCHAR}
+    </if>
+    <if test="nation != null" >
+      and nation = #{nation,jdbcType=VARCHAR}
     </if>
     <if test="keyword != null" >
       and (title like CONCAT('%',#{keyword,jdbcType=VARCHAR},'%') or short_content like CONCAT('%',#{keyword,jdbcType=VARCHAR},'%'))
@@ -352,6 +369,9 @@
     <if test="category != null" >
       and a.category = #{category,jdbcType=VARCHAR}
     </if>
+    <if test="nation != null" >
+      and nation = #{nation,jdbcType=VARCHAR}
+    </if>
     <if test="keyword != null" >
       and a.title like CONCAT('%',#{keyword,jdbcType=VARCHAR},'%')
     </if>
@@ -373,6 +393,9 @@
     </if>
     <if test="category != null" >
       and a.category = #{category,jdbcType=VARCHAR}
+    </if>
+    <if test="nation != null" >
+      and nation = #{nation,jdbcType=VARCHAR}
     </if>
     <if test="keyword != null" >
       and a.title like CONCAT('%',#{keyword,jdbcType=VARCHAR},'%')
@@ -398,6 +421,9 @@
     </if>
     <if test="category != null" >
       and category = #{category,jdbcType=VARCHAR}
+    </if>
+    <if test="nation != null" >
+      and nation = #{nation,jdbcType=VARCHAR}
     </if>
     <if test="id != null" >
       and id &lt;> #{id,jdbcType=INTEGER}

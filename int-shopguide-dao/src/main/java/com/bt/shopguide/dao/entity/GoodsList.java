@@ -503,4 +503,14 @@ public class GoodsList implements Serializable{
     public void setThumbs(Integer thumbs) {
         this.thumbs = thumbs;
     }
+
+    public String nation;
+
+    public String getNation() {
+        return nation;
+    }
+
+    public void setNation(String nation) {
+        this.nation = nation;
+    }
 }

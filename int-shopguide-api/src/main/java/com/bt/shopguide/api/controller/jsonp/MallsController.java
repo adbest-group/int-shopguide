@@ -6,6 +6,7 @@ import com.bt.shopguide.api.vo.JsonResultArray;
 import com.bt.shopguide.dao.service.IMallsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,10 +20,14 @@ public class MallsController {
 
     @RequestMapping(value = "")
     @ResponseBody
-    public JsonResult getAllMalls(){
+    public JsonResult getAllMalls(@RequestParam(value = "nation",required = false) String nation){
         JsonResult jsonResult = new JsonResult();
         JsonResultArray jra = new JsonResultArray();
-        jra.setList(GlobalVariable.malls);
+        if("us".equalsIgnoreCase(nation)){
+            jra.setList(GlobalVariable.us_malls);
+        }else {
+            jra.setList(GlobalVariable.malls);
+        }
         jsonResult.setResult(jra);
         return  jsonResult;
     }

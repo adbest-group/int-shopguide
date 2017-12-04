@@ -37,12 +37,14 @@ public class GlobalVariable {
     private ICategoryService categoryService;
     //所有商城列表
     public static List<Malls> malls = new ArrayList<>();
+    public static List<Malls> us_malls = new ArrayList<>();
     //top10商品
     public static List<GoodsList> goods_list_top10 = new ArrayList<>();
     //热词列表
     public static List<Hotword> hotwords = new ArrayList<>();
     //分类列表
     public static List<Category> categorys = new ArrayList<>();
+    public static List<Category> us_categorys = new ArrayList<>();
 
     public void init(){
         logger.info("初始化全局变量开始！~~~~~~~~~~~~~~~");
@@ -59,8 +61,10 @@ public class GlobalVariable {
 
     //刷新商城
     public void loadMalls(){
-        List<Malls> tmpMalls = mallsService.getTopN(8);
+        List<Malls> tmpMalls = mallsService.getNationTopN(null,8);
+        List<Malls> us_tmpMalls = mallsService.getNationTopN("us",10);
         malls = tmpMalls;
+        us_malls = us_tmpMalls;
         logger.info("刷新商城完成！~~~~~~~~~~~~~~~");
     }
 
@@ -73,8 +77,10 @@ public class GlobalVariable {
 
     //刷新分类
     public void loadCategorys(){
-        List<Category> tmp = categoryService.getTopN(10);
+        List<Category> tmp = categoryService.getNationTopN(null,12);
+        List<Category> us_tmp = categoryService.getNationTopN("us",12);
         categorys = tmp;
+        us_categorys = us_tmp;
         logger.info("刷新分类完成！~~~~~~~~~~~~~~~");
     }
 

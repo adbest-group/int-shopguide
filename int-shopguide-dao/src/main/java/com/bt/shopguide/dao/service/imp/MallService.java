@@ -26,4 +26,9 @@ public class MallService implements IMallsService {
     public List<Malls> getTopN(Integer n) {
         return mallsMapper.getTopN(n);
     }
+
+    @Override
+    public List<Malls> getNationTopN(String nation, Integer n) {
+        return mallsMapper.getNationTopN(nation,n);
+    }
 }

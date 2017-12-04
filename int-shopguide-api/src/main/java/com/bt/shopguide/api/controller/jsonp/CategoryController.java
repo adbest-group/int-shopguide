@@ -4,6 +4,7 @@ import com.bt.shopguide.api.system.GlobalVariable;
 import com.bt.shopguide.api.vo.JsonResult;
 import com.bt.shopguide.api.vo.JsonResultArray;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,10 +17,14 @@ public class CategoryController {
 
     @RequestMapping(value = "")
     @ResponseBody
-    public JsonResult getCategorys(){
+    public JsonResult getCategorys(@RequestParam(value = "nation",required = false) String nation){
         JsonResult jsonResult = new JsonResult();
         JsonResultArray jra = new JsonResultArray();
-        jra.setList(GlobalVariable.categorys);
+        if("us".equalsIgnoreCase(nation)){
+            jra.setList(GlobalVariable.us_categorys);
+        }else {
+            jra.setList(GlobalVariable.categorys);
+        }
         jsonResult.setResult(jra);
         return  jsonResult;
     }

@@ -10,4 +10,5 @@ import java.util.List;
 public interface ICategoryService {
     public List<Category> getTop5();
     public List<Category> getTopN(Integer n);
+    public List<Category> getNationTopN(String nation,Integer n);
 }

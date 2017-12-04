@@ -45,6 +45,7 @@ public class GoodsController {
     public JsonResult getGoodsList(@RequestParam(value = "page",defaultValue = "1") Integer pageIndex,
                                    @RequestParam(value = "mall",required = false) String mallName,
                                    @RequestParam(value = "category",required = false) String category,
+                                   @RequestParam(value = "nation",required = false) String nation,
                                    @RequestParam(value = "id",required = false) Long id,
                                    @RequestParam(value = "sync",required = false) Long syncTime){
         JsonResult result = new JsonResult();
@@ -57,6 +58,7 @@ public class GoodsController {
         Map<String,Object> condition = Maps.newHashMap();
         if(mallName!=null) condition.put("mallName",mallName);
         if(category!=null) condition.put("category",category);
+        if(nation!=null) condition.put("nation",category);
         if(id!=null) condition.put("id",id);
         if(syncTime!=null) condition.put("syncTime",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(syncTime)));
         vo.setConditionMap(condition);

@@ -1,6 +1,7 @@
 package com.bt.shopguide.dao.mapper;
 
 import com.bt.shopguide.dao.entity.Malls;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -55,4 +56,5 @@ public interface MallsMapper {
 
     List<Malls> selectAll();
     List<Malls> getTopN(Integer n);
+    List<Malls> getNationTopN(@Param("nation")String nation,@Param("n") Integer n);
 }

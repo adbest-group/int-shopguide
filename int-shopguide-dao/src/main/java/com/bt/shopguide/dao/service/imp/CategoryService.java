@@ -26,4 +26,9 @@ public class CategoryService implements ICategoryService {
     public List<Category> getTopN(Integer n) {
         return categoryMapper.getTopN(n);
     }
+
+    @Override
+    public List<Category> getNationTopN(String nation, Integer n) {
+        return categoryMapper.getNationTopN(nation,n);
+    }
 }

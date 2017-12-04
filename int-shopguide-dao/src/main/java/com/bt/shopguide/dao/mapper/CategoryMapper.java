@@ -1,6 +1,7 @@
 package com.bt.shopguide.dao.mapper;
 
 import com.bt.shopguide.dao.entity.Category;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -54,4 +55,6 @@ public interface CategoryMapper {
     int updateByPrimaryKey(Category record);
 
     List<Category> getTopN(Integer n);
+
+    List<Category> getNationTopN(@Param("nation") String nation,@Param("n") Integer n);
 }
