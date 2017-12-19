@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,5 +37,10 @@ public class CouponService implements ICouponService {
             vo.setData(couponMapper.selectPage(params));
             vo.setTotalCount(totalCount);
         }
+    }
+
+    @Override
+    public List<Coupon> selectTodayCoupon() {
+        return couponMapper.selectTodayCoupon();
     }
 }

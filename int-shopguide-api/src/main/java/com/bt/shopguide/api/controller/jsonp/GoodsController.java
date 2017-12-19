@@ -58,7 +58,7 @@ public class GoodsController {
         Map<String,Object> condition = Maps.newHashMap();
         if(mallName!=null) condition.put("mallName",mallName);
         if(category!=null) condition.put("category",category);
-        if(nation!=null) condition.put("nation",category);
+        if(nation!=null&&nation.length()>0) condition.put("nation",nation);
         if(id!=null) condition.put("id",id);
         if(syncTime!=null) condition.put("syncTime",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(syncTime)));
         vo.setConditionMap(condition);

@@ -108,8 +108,14 @@
 			   <!--enableUpdateByExample="false">-->
 
 		<!--</table>-->
-		<table schema="int-shopguide" tableName="COUPONS"
-			   domainObjectName="Coupon" enableCountByExample="yes"
+		<!--<table schema="int-shopguide" tableName="COUPONS"-->
+			   <!--domainObjectName="Coupon" enableCountByExample="yes"-->
+			   <!--enableDeleteByExample="false" enableSelectByExample="yes"-->
+			   <!--enableUpdateByExample="false">-->
+
+		<!--</table>-->
+		<table schema="int-shopguide" tableName="BANNER"
+			   domainObjectName="Banner" enableCountByExample="yes"
 			   enableDeleteByExample="false" enableSelectByExample="yes"
 			   enableUpdateByExample="false">
 

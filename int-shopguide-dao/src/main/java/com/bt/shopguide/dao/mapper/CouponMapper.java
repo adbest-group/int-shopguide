@@ -56,4 +56,5 @@ public interface CouponMapper {
 
     List<Coupon> selectPage(Map map);
     int getTotalCount(Map map);
+    List<Coupon> selectTodayCoupon();
 }

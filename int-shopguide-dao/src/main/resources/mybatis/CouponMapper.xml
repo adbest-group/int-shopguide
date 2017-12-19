@@ -186,4 +186,10 @@
       and id > #{id,jdbcType=BIGINT}
     </if>
   </select>
+  <select id="selectTodayCoupon" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from COUPONS
+    where expire > now() order by store ,expire desc;
+  </select>
 </mapper>
