@@ -149,7 +149,7 @@ http://activemq.apache.org/schema/core/activemq-core-5.12.1.xsd">
     <bean id="guangdiuCouponQueue" class="org.apache.activemq.command.ActiveMQQueue">
         <!-- 设置消息队列的名字 -->
         <constructor-arg>
-            <value>ec_guangdiu_item</value>
+            <value>ec_guangdiu_item,ec_guangdiu_shop</value>
         </constructor-arg>
     </bean>
 
