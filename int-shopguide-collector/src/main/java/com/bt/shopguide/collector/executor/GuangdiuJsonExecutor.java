@@ -83,7 +83,12 @@ public class GuangdiuJsonExecutor extends AbstractJsonExecutor {
             glist.setShortContent(content);
             glist.setMallName((obj.get("store")==null||obj.get("store").equals(JsonNull.INSTANCE))?"":obj.get("store").getAsString().trim().replace(" ",""));
             glist.setGoodSourceName((obj.get("source")==null||obj.get("source").equals(JsonNull.INSTANCE))?"":obj.get("source").getAsString().trim());
-            String url = (obj.get("reallink")==null||obj.get("reallink").equals(JsonNull.INSTANCE))?"":obj.get("reallink").getAsString();
+            String url= "";
+            if("天猫".equals(glist.getMallName())){
+                url = (obj.get("link")==null||obj.get("link").equals(JsonNull.INSTANCE))?"":obj.get("link").getAsString();
+            }else{
+                url = (obj.get("reallink")==null||obj.get("reallink").equals(JsonNull.INSTANCE))?"":obj.get("reallink").getAsString();
+            }
             glist.setCreateTime(new Date());
             //商品分类
             String cate = (obj.get("cate")==null || obj.get("cate").equals(JsonNull.INSTANCE))?"":obj.get("cate").getAsString();
