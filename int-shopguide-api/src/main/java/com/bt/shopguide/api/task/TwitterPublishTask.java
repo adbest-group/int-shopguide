@@ -27,16 +27,20 @@ public class TwitterPublishTask {
 
     @Value("${project.host}")
     private String host;
+    @Value("${share.twitter}")
+    private boolean if_share_twitter;
 
     //每小时发布一条page
     @Scheduled(cron = "0 0 0/2 * * ?")
     public void tweet(){
-        List<GoodsList> list = goodsListService.getRandGoods(1,10);
-        if(list.size()>0){
-            GoodsList gl = list.get(0);
-            String shortUrl = shortener.shorten(host+"/detail/"+gl.getId());
-            twitterUtil.tweet(gl.getSmallImageUrl(),(gl.getDiscounts()==null?(gl.getPrice()==null?"":gl.getPrice()):gl.getDiscounts()) +" "+gl.getTitle()+". " +
-                    "Link Here: "+shortUrl);
+        if(if_share_twitter) {
+            List<GoodsList> list = goodsListService.getRandGoods(1, 10);
+            if (list.size() > 0) {
+                GoodsList gl = list.get(0);
+                String shortUrl = shortener.shorten(host + "/detail/" + gl.getId());
+                twitterUtil.tweet(gl.getSmallImageUrl(), (gl.getDiscounts() == null ? (gl.getPrice() == null ? "" : gl.getPrice()) : gl.getDiscounts()) + " " + gl.getTitle() + ". " +
+                        "Link Here: " + shortUrl);
+            }
         }
     }
 
