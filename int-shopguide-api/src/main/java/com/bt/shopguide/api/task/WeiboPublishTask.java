@@ -32,7 +32,7 @@ public class WeiboPublishTask {
     private boolean if_share_weibo;
 
     //每小时发布一条page
-    @Scheduled(cron = "0 0 0/2 * * ?")
+    @Scheduled(cron = "0 0/30 * * * ?")
     public void tweet(){
         if(if_share_weibo) {
             List<GoodsList> list = goodsListService.getRandGoods(1, 10);
