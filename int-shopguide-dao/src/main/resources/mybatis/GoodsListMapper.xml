@@ -319,7 +319,7 @@
       <!-- syncTime参数主要用于获取有几条新商品用，因此用>= 和 id 一起用，String 格式：yyyy-MM-dd HH:mm:ss -->
       and sync_time >= #{syncTime,jdbcType=VARCHAR}
     </if>
-    and publish = 1
+    and publish = 1 and sync_time &lt; now()
     order by sync_time desc,id desc
     limit #{startIndex,jdbcType=BIGINT},#{pageSize,jdbcType=BIGINT}
   </select>
@@ -352,7 +352,7 @@
       <!-- syncTime参数主要用于获取有几条新商品用，因此用>= 和 id 一起用，String 格式：yyyy-MM-dd HH:mm:ss -->
       and sync_time >= #{syncTime,jdbcType=VARCHAR}
     </if>
-    and publish = 1
+    and publish = 1 and sync_time &lt; now()
   </select>
   <select id="selectGoodDetailByGoodsId" parameterType="java.lang.Long" resultMap="ResultWithHtmlMap">
     <!--
@@ -388,7 +388,7 @@
     <if test="id != null" >
       and a.id > #{id,jdbcType=BIGINT}
     </if>
-    and a.publish = 1 and sync_time &lt; now()
+    and a.publish = 1
     order by id
     limit #{startIndex,jdbcType=BIGINT},#{pageSize,jdbcType=BIGINT}
   </select>
@@ -413,7 +413,7 @@
     <if test="id != null" >
       and a.id > #{id,jdbcType=BIGINT}
     </if>
-    and a.publish = 1 and sync_time &lt; now()
+    and a.publish = 1
   </select>
 
   <update id="increaseThumbs">
@@ -438,7 +438,7 @@
     <if test="id != null" >
       and id &lt;> #{id,jdbcType=INTEGER}
     </if>
-    and publish = 1
+    and publish = 1 and sync_time &lt; now()
     order by id desc
     <choose>
       <when test="randInTotalCount != null">
