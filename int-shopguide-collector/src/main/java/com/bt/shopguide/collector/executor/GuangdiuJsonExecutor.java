@@ -63,6 +63,18 @@ public class GuangdiuJsonExecutor extends AbstractJsonExecutor {
     public void execute(String json) {
         JsonObject obj = new JsonParser().parse(json).getAsJsonObject();
 
+        String url= "";
+        String mallName="";
+        mallName = (obj.get("store")==null||obj.get("store").equals(JsonNull.INSTANCE))?"":obj.get("store").getAsString().trim().replace(" ","");
+        if("天猫".equals(mallName)){
+            url = (obj.get("link")==null||obj.get("link").equals(JsonNull.INSTANCE))?"":obj.get("link").getAsString();
+        }else{
+            url = (obj.get("reallink")==null||obj.get("reallink").equals(JsonNull.INSTANCE))?"":obj.get("reallink").getAsString();
+        }
+        //爬虫可能会被反爬，导致关键字段没内容，这里用url当代表判断是否反爬，如果反爬，直接弃掉
+        if(url.length()<1){
+            return;
+        }
         String pid = "cn_shopguide_goods_guangdiu_"+obj.get("pid").getAsString();
         logger.info("goods cache key:{}",new Object[]{pid});
         if(redisTemplate.opsForValue().get(pid)!=null){
@@ -81,14 +93,8 @@ public class GuangdiuJsonExecutor extends AbstractJsonExecutor {
             if(content.length()>160)
                 content = content.substring(0,160);
             glist.setShortContent(content);
-            glist.setMallName((obj.get("store")==null||obj.get("store").equals(JsonNull.INSTANCE))?"":obj.get("store").getAsString().trim().replace(" ",""));
+            glist.setMallName(mallName);
             glist.setGoodSourceName((obj.get("source")==null||obj.get("source").equals(JsonNull.INSTANCE))?"":obj.get("source").getAsString().trim());
-            String url= "";
-            if("天猫".equals(glist.getMallName())){
-                url = (obj.get("link")==null||obj.get("link").equals(JsonNull.INSTANCE))?"":obj.get("link").getAsString();
-            }else{
-                url = (obj.get("reallink")==null||obj.get("reallink").equals(JsonNull.INSTANCE))?"":obj.get("reallink").getAsString();
-            }
             glist.setCreateTime(new Date());
             //商品分类
             String cate = (obj.get("cate")==null || obj.get("cate").equals(JsonNull.INSTANCE))?"":obj.get("cate").getAsString();
