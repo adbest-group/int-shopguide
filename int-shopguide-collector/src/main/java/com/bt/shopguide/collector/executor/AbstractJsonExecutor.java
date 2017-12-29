@@ -11,6 +11,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
+import java.util.Random;
 
 /**
  * Created by caiting on 2017/10/25.
@@ -63,6 +65,12 @@ public abstract class AbstractJsonExecutor {
             }
         }
         return domain;
+    }
+
+    //处理抓取时间，分配在抓取时间+随机未来一小时以内
+    protected Date dealSyncTime(Date d){
+        int ms = (int)Math.ceil(Math.random()*3600*1000);
+        return new Date(d.getTime()+ms);
     }
 
     //转链

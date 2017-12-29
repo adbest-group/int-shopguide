@@ -111,7 +111,7 @@ public class GuangdiuJsonExecutor extends AbstractJsonExecutor {
             glist.setUrl(dealUrl(url));
             glist.setSmallImageUrl(obj.get("listImage").getAsString());
             glist.setPublish(publish);
-            glist.setSyncTime(sdf.parse(obj.get("crawlTime").getAsString().replaceAll("T"," ").replaceAll("Z","")));
+            glist.setSyncTime(dealSyncTime(sdf.parse(obj.get("crawlTime").getAsString().replaceAll("T"," ").replaceAll("Z",""))));
             glist.setCreateTime(new Date());
             glist.setThumbs(0);
             //插入goodslist

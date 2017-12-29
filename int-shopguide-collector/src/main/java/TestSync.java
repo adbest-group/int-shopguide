@@ -34,7 +34,9 @@ public class TestSync {
 //    }
 
     public static void main(String[] args) {
-        String[] cfgs = new String[]{"classpath:applicationContext.xml","classpath:applicationContext-quartz.xml","classpath:applicationContext-mybatis.xml","classpath:applicationContext-redis.xml"};
-        ApplicationContext ctx = new ClassPathXmlApplicationContext(cfgs);
+//        String[] cfgs = new String[]{"classpath:applicationContext.xml","classpath:applicationContext-quartz.xml","classpath:applicationContext-mybatis.xml","classpath:applicationContext-redis.xml"};
+//        ApplicationContext ctx = new ClassPathXmlApplicationContext(cfgs);
+        for(int i =0;i<10;i++)
+        System.out.println(Math.ceil(Math.random()*3600));
     }
 }
