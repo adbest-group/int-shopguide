@@ -51,7 +51,7 @@ public class SyncCheapTask {
         prop = new Properties();
             logger.info("generate SyncCheapTask");
         try {
-            prop.load(new FileInputStream(last_cheap_id_cfg_path));
+            prop.load(new FileInputStream(getClass().getResource(last_cheap_id_cfg_path).getFile()));
             this.last_cheap_id = Long.parseLong(prop.getProperty("last_id"));
             helper = HttpClientHelper.getInstance();
         } catch (IOException e) {
