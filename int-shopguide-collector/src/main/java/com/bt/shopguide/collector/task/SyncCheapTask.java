@@ -55,17 +55,17 @@ public class SyncCheapTask {
             this.last_cheap_id = Long.parseLong(prop.getProperty("last_id"));
             helper = HttpClientHelper.getInstance();
         } catch (IOException e) {
-            logger.error("load sync_good_id.ini faild");
+            logger.error("load sync_cheap_id.ini faild");
             this.last_cheap_id = 0;
         }catch(NumberFormatException e){
-            logger.error("last_id is NaN in sync_good_id.ini");
+            logger.error("last_id is NaN in sync_cheap_id.ini");
             this.last_cheap_id = 0;
         }
-        logger.info("last_coupon_id:+"+last_cheap_id);
+        logger.info("last_cheap_id:+"+last_cheap_id);
     }
 
     public void execute(){
-        logger.info("start SyncCouponTask");
+        logger.info("start SyncCheapTask");
         //正确读取配置才开始做事
         if(this.last_cheap_id>0){
             while(true){
@@ -85,7 +85,7 @@ public class SyncCheapTask {
                         if(content!=null&& StringUtils.isNotEmpty(content)){
                             this.last_cheap_id = vo.getData().get(vo.getData().size()-1).getId();
                             this.writeToini();
-                            logger.info("this.last_coupon_id updated:"+this.last_cheap_id);
+                            logger.info("this.last_cheap_id updated:"+this.last_cheap_id);
                             try {
                                 //每页上传后休息100ms
                                 Thread.sleep(100);
@@ -94,7 +94,7 @@ public class SyncCheapTask {
                             }
                         }else{
                             //api访问存在问题，比如404，500等
-                            logger.error("sync coupon to aip host faild!");
+                            logger.error("sync cheap to aip host faild!");
                             try {
                                 Thread.sleep(this.TIME_ERROR_WAITING);
                             } catch (InterruptedException e) {
@@ -134,7 +134,7 @@ public class SyncCheapTask {
             this.prop.store(fos, "modify");
         } catch (IOException e) {
             e.printStackTrace();
-            logger.error("overrite sync_good_id.ini faild! last_good_id is:"+this.last_cheap_id);
+            logger.error("overrite sync_cheap_id.ini faild! last_cheap_id is:"+this.last_cheap_id);
         }finally{
             if(fos!=null) {
                 try {

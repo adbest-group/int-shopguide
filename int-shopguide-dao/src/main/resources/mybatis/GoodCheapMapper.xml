@@ -198,6 +198,7 @@
     <if test="id != null" >
       and id > #{id,jdbcType=BIGINT}
     </if>
+
     order by sync_time desc,id desc
     limit #{startIndex,jdbcType=BIGINT},#{pageSize,jdbcType=BIGINT}
   </select>
