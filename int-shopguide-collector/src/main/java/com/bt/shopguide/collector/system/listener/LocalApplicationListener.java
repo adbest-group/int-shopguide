@@ -1,6 +1,7 @@
 package com.bt.shopguide.collector.system.listener;
 
 import com.bt.shopguide.collector.system.GlobalVariable;
+import com.bt.shopguide.collector.task.SyncCheapTask;
 import com.bt.shopguide.collector.task.SyncGoodsTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -17,6 +18,8 @@ public class LocalApplicationListener implements ApplicationListener<ContextRefr
     private GlobalVariable globalVariable;
     @Autowired
     private SyncGoodsTask syncGoodsTask;
+    @Autowired
+    private SyncCheapTask syncCheapTask;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -24,7 +27,19 @@ public class LocalApplicationListener implements ApplicationListener<ContextRefr
             //初始化系统参数和不经常变动的数据库数据
             globalVariable.init();
             //启动商品数据上传
-            syncGoodsTask.execute();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    syncGoodsTask.execute();
+                }
+            }).start();
+            //启动九块九商品数据上传
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    syncCheapTask.execute();
+                }
+            }).start();
         }
     }
 }

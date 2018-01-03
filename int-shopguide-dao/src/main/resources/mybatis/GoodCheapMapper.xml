@@ -189,4 +189,36 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="selectPage" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from GOOD_CHEAPS
+    where 1=1
+    <if test="id != null" >
+      and id > #{id,jdbcType=BIGINT}
+    </if>
+    order by sync_time desc,id desc
+    limit #{startIndex,jdbcType=BIGINT},#{pageSize,jdbcType=BIGINT}
+  </select>
+  <select id="selectPageOrderById" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from GOOD_CHEAPS
+    where 1=1
+    <if test="id != null" >
+      and id > #{id,jdbcType=BIGINT}
+    </if>
+    order by id
+    limit #{startIndex,jdbcType=BIGINT},#{pageSize,jdbcType=BIGINT}
+  </select>
+  <select id="getTotalCount" resultType="java.lang.Integer" parameterType="map" >
+    select
+    count(id)
+    from GOOD_CHEAPS
+    where 1=1
+    <if test="id != null" >
+      and id > #{id,jdbcType=BIGINT}
+    </if>
+  </select>
 </mapper>

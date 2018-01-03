@@ -1,9 +1,8 @@
 package com.bt.shopguide.api.controller;
 
 import com.bt.shopguide.api.vo.JsonResult;
-import com.bt.shopguide.dao.entity.GoodsDetail;
-import com.bt.shopguide.dao.entity.GoodsList;
-import com.bt.shopguide.dao.entity.GoodsListWithHtml;
+import com.bt.shopguide.dao.entity.*;
+import com.bt.shopguide.dao.service.IGoodCheapService;
 import com.bt.shopguide.dao.service.IGoodsDetailService;
 import com.bt.shopguide.dao.service.IGoodsListService;
 import com.google.gson.Gson;
@@ -30,6 +29,8 @@ public class SyncGoodsController {
     IGoodsDetailService goodsDetailService;
     @Autowired
     IGoodsListService goodsListService;
+    @Autowired
+    IGoodCheapService goodCheapService;
 
     @ResponseBody
     @RequestMapping(value = "goods")
@@ -84,6 +85,37 @@ public class SyncGoodsController {
                 }
             }catch(Exception e){
                 logger.error("save goods_list faild!original id is["+goodHtml.getId()+"]");
+                continue;
+            }
+        }
+        return  jsonResult;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "cheaps")
+    public JsonResult syncCoupons(@RequestParam(value = "json",required = false) String cheapJson){
+        JsonResult jsonResult = new JsonResult();
+        if(cheapJson==null){
+            jsonResult.setCode(-1);
+            jsonResult.setMsg("not enougth param!");
+            return jsonResult;
+        }
+        Gson gson = new Gson();
+        List<GoodCheap> cheaps;
+        Type type = new TypeToken<List<GoodCheap>>() {}.getType();
+        try {
+            cheaps = gson.fromJson(cheapJson,type);
+        }catch(Exception e){
+            jsonResult.setCode(-1);
+            jsonResult.setMsg("parse error");
+            return jsonResult;
+        }
+        for(GoodCheap cheap : cheaps){
+            try{
+                goodCheapService.save(cheap);
+
+            }catch(Exception e){
+                logger.error("save coupon faild!original id is["+cheap.getId()+"]");
                 continue;
             }
         }
