@@ -40,7 +40,8 @@ public class SyncCheapTask {
     @Value("${sync.cheap.apiUrl}")
     private String API_URL;
 
-    private String last_cheap_id_cfg_path=System.getProperty("user.dir")+ File.separator+"conf"+File.separator+"sync_cheap_id.ini";
+//    private String last_cheap_id_cfg_path=System.getProperty("user.dir")+ File.separator+"conf"+File.separator+"sync_cheap_id.ini";
+    private String last_cheap_id_cfg_path="/sync_cheap_id.ini";
     private Properties prop;
     private long last_cheap_id;
 
