@@ -20,7 +20,7 @@
 
 		<!-- jdbc连接 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://10.2.30.36:3307/int-shopguide?characterEncoding=utf-8&amp;jdbcCompliantTruncation=false"
+			connectionURL="jdbc:mysql://10.2.30.36:3307/cn-shopguide?characterEncoding=utf-8&amp;jdbcCompliantTruncation=false"
 						userId="admin"
 						password="admin"/>
 
@@ -113,9 +113,15 @@
 			   <!--enableDeleteByExample="false" enableSelectByExample="yes"-->
 			   <!--enableUpdateByExample="false">-->
 
+		<!--&lt;!&ndash;</table>&ndash;&gt;-->
+		<!--<table schema="int-shopguide" tableName="BANNER"-->
+			   <!--domainObjectName="Banner" enableCountByExample="yes"-->
+			   <!--enableDeleteByExample="false" enableSelectByExample="yes"-->
+			   <!--enableUpdateByExample="false">-->
+
 		<!--</table>-->
-		<table schema="int-shopguide" tableName="BANNER"
-			   domainObjectName="Banner" enableCountByExample="yes"
+		<table schema="cn-shopguide" tableName="GOOD_CHEAPS"
+			   domainObjectName="GoodCheap" enableCountByExample="yes"
 			   enableDeleteByExample="false" enableSelectByExample="yes"
 			   enableUpdateByExample="false">
 
