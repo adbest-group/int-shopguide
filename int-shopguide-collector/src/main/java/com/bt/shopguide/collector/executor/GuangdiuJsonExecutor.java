@@ -66,7 +66,7 @@ public class GuangdiuJsonExecutor extends AbstractJsonExecutor {
         String url= "";
         String mallName="";
         mallName = (obj.get("store")==null||obj.get("store").equals(JsonNull.INSTANCE))?"":obj.get("store").getAsString().trim().replace(" ","");
-        if("天猫".equals(mallName)){
+        if("天猫".equals(mallName) || "亚马逊中国".equals(mallName)){
             url = (obj.get("link")==null||obj.get("link").equals(JsonNull.INSTANCE))?"":obj.get("link").getAsString();
         }else{
             url = (obj.get("reallink")==null||obj.get("reallink").equals(JsonNull.INSTANCE))?"":obj.get("reallink").getAsString();

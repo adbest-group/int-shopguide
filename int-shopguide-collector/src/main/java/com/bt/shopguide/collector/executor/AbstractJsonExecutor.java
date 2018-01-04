@@ -39,6 +39,8 @@ public abstract class AbstractJsonExecutor {
     protected String amazon_account;
     @Value("${affiliate.account.ebay}")
     protected String ebay_account;
+    @Value("${affiliate.account.alimama}")
+    protected String alimama_account;
 
 
     public abstract void execute(String json);
@@ -93,6 +95,8 @@ public abstract class AbstractJsonExecutor {
         //ebay的链接处理
         }else if("rover.ebay.com".equalsIgnoreCase(domain)){
             link = url.replaceAll("campid=[^&^=]*","campid="+ebay_account);
+        }else if("uland.taobao.com".equalsIgnoreCase(domain)){
+            link = url.replaceAll("pid=[^&^=]*","pid="+alimama_account);
         }else{
             link = url;
         }
