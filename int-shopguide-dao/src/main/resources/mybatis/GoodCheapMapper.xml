@@ -195,10 +195,12 @@
     <include refid="Base_Column_List" />
     from GOOD_CHEAPS
     where 1=1
+    <if test="category != null" >
+      and category = #{category,jdbcType=VARCHAR}
+    </if>
     <if test="id != null" >
       and id > #{id,jdbcType=BIGINT}
     </if>
-
     order by sync_time desc,id desc
     limit #{startIndex,jdbcType=BIGINT},#{pageSize,jdbcType=BIGINT}
   </select>
@@ -218,6 +220,9 @@
     count(id)
     from GOOD_CHEAPS
     where 1=1
+    <if test="category != null" >
+      and category = #{category,jdbcType=VARCHAR}
+    </if>
     <if test="id != null" >
       and id > #{id,jdbcType=BIGINT}
     </if>
