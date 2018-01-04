@@ -63,7 +63,8 @@ public class GuangdiuCheapJsonExecutor extends AbstractJsonExecutor {
             gc.setTitle((obj.get("title")==null||obj.get("title").equals(JsonNull.INSTANCE))?"":obj.get("title").getAsString());
             gc.setListImage((obj.get("listImage")==null||obj.get("listImage").equals(JsonNull.INSTANCE))?"":obj.get("listImage").getAsString());
             gc.setPrice((obj.get("price")==null||obj.get("price").equals(JsonNull.INSTANCE))?"":obj.get("price").getAsString());
-            gc.setUrl((obj.get("buyButtonLink")==null||obj.get("buyButtonLink").equals(JsonNull.INSTANCE))?"":obj.get("buyButtonLink").getAsString());
+            String url = (obj.get("buyButtonLink")==null||obj.get("buyButtonLink").equals(JsonNull.INSTANCE))?"":obj.get("buyButtonLink").getAsString();
+            gc.setUrl(dealUrl(url));
             gc.setCoupon((obj.get("coupon")==null||obj.get("coupon").equals(JsonNull.INSTANCE))?"":obj.get("coupon").getAsString());
             gc.setCategory((obj.get("cate")==null||obj.get("cate").equals(JsonNull.INSTANCE))?"":obj.get("cate").getAsString());
             gc.setSyncTime(sdf.parse(obj.get("crawlTime").getAsString().replaceAll("T"," ").replaceAll("Z","")));
