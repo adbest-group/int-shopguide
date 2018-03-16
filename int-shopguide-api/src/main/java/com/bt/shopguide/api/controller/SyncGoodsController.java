@@ -67,7 +67,7 @@ public class SyncGoodsController {
             glist.setGoodSourceName(goodHtml.getGoodSourceName());
             glist.setShortContent(goodHtml.getShortContent());
             glist.setUrl(goodHtml.getUrl());
-            glist.setThumbs(goodHtml.getThumbs());
+            glist.setThumbs(Math.abs(goodHtml.getThumbs()));
             glist.setPublish(goodHtml.getPublish());
             glist.setNation(goodHtml.getNation());
             glist.setSyncTime(goodHtml.getSyncTime());
